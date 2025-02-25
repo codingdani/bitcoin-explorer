@@ -13,6 +13,7 @@ export const getAddressData = async (_address: string) => {
     return response.data;
   } catch (error) {
     console.error("Fehler beim Aufrufen der Adresse", error);
+    return null;
   }
 };
 
@@ -25,6 +26,7 @@ export const getTransactionData = async (_txID: string) => {
     return response.data;
   } catch (error) {
     console.error("Fehler beim Aufrufen der Transaktion", error);
+    return null;
   }
 };
 
@@ -39,6 +41,7 @@ export const getMemPoolData = async () => {
       "Fehler beim Aufrufen von unbestätigten Transaktionen",
       error
     );
+    return null;
   }
 };
 
@@ -51,11 +54,12 @@ export const getBlockDataByHash = async (_blockHash: string) => {
     return response.data;
   } catch (error) {
     console.error("Fehler beim Aufrufen von Block Daten", error);
+    return null;
   }
 };
 
 //Funktion um Block-Nummer abzurufen
-export const getBlockDataByBlockHeight = async (_blockHeight: number) => {
+export const getBlockDataByBlockHeight = async (_blockHeight: string) => {
   try {
     const response = await axios.get(
       `${BASE_API_URL}/blocks/${_blockHeight}${TOKEN_EXTENSION}`
@@ -63,6 +67,7 @@ export const getBlockDataByBlockHeight = async (_blockHeight: number) => {
     return response.data;
   } catch (error) {
     console.error("Fehler beim Aufrufen der Block Daten", error);
+    return null;
   }
 };
 
@@ -75,5 +80,6 @@ export const getAddressDataByName = async (_walletName: string) => {
     return response.data;
   } catch (error) {
     console.error("Fehler beim Aufrufen der Wallet Daten", error);
+    return null;
   }
 };

@@ -55,7 +55,25 @@ export const getBlockDataByHash = async (_blockHash: string) => {
 };
 
 //Funktion um Block-Nummer abzurufen
-export const getBlockDataByBlocknumber = () => {};
+export const getBlockDataByBlockHeight = async (_blockHeight: number) => {
+  try {
+    const response = await axios.get(
+      `${BASE_API_URL}/blocks/${_blockHeight}${TOKEN_EXTENSION}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Fehler beim Aufrufen der Block Daten", error);
+  }
+};
 
 //Funktion um Wallet-Name abzurufen
-export const getAddressDataByName = () => {};
+export const getAddressDataByName = async (_walletName: string) => {
+  try {
+    const response = await axios.get(
+      `${BASE_API_URL}/wallets/${_walletName}${TOKEN_EXTENSION}`
+    );
+    return response.data;
+  } catch (error) {
+    console.error("Fehler beim Aufrufen der Wallet Daten", error);
+  }
+};

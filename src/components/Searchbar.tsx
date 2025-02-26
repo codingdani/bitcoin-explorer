@@ -31,7 +31,7 @@ export default function Searchbar({ onSearch }: SearchbarProps) {
         style={{
           padding: "10px",
           fontSize: "16px",
-          width: "300px",
+          width: "450px",
           border: "1px solid #ccc",
           borderRadius: "5px",
         }}

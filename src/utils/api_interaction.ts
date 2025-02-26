@@ -1,7 +1,7 @@
 import axios from "axios";
 
-const BLOCKCYPHER_API_KEY = import.meta.env.VITE_BLOCKCYPHER_API_KEY;
-const TOKEN_EXTENSION = `?token=${BLOCKCYPHER_API_KEY}`;
+const VITE_BLOCKCYPHER_API_KEY = import.meta.env.VITE_BLOCKCYPHER_API_KEY;
+const TOKEN_EXTENSION = `?token=${VITE_BLOCKCYPHER_API_KEY}`;
 const BASE_API_URL = "https://api.blockcypher.com/v1/btc/main";
 
 //Funktion um Wallet-Adressen abzurufen

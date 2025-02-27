@@ -12,7 +12,7 @@ export default function Navbar() {
       }}
     >
       <Link to="/" style={{ color: "white", margin: "0 15px" }}>
-        🏠 Startseite
+        Mempool
       </Link>
     </nav>
   );

@@ -1,0 +1,81 @@
+/* 🔹 Container für die gesamte Mempool-Seite */
+.mempool-container {
+  padding: 20px;
+  text-align: center;
+}
+
+/* 🔹 Aktualisierungszeit anzeigen */
+.mempool-update-time {
+  font-size: 14px;
+  color: gray;
+}
+
+/* 🔹 Refresh-Button */
+.mempool-refresh-button {
+  margin: 10px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #ff9900;
+  color: black;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.mempool-refresh-button:hover {
+  background-color: #e68a00;
+}
+
+/* 🔹 Ladeanimation */
+.mempool-loading {
+  font-size: 16px;
+  font-style: italic;
+  color: #666;
+}
+
+/* 🔹 Tabelle */
+.mempool-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.mempool-table th {
+  padding: 10px;
+  background-color: #222;
+  color: #fff;
+  text-align: left;
+}
+
+.mempool-table td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* 🔹 Links in der Tabelle */
+.mempool-link {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.mempool-link:hover {
+  text-decoration: underline;
+}
+
+/* 🔹 "Mehr laden"-Button */
+.mempool-load-more-button {
+  margin-top: 15px;
+  padding: 10px 20px;
+  font-size: 16px;
+  background-color: #007bff;
+  color: white;
+  border: none;
+  border-radius: 5px;
+  cursor: pointer;
+  transition: background-color 0.2s ease;
+}
+
+.mempool-load-more-button:hover {
+  background-color: #0056b3;
+}

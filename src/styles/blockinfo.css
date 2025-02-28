@@ -1,0 +1,72 @@
+/* 🔹 Container für die gesamte Block-Seite */
+.block-container {
+  padding: 20px;
+  text-align: center;
+}
+
+/* 🔹 Blocktitel */
+.block-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 🔹 Allgemeine Blockinformationen */
+.block-info {
+  background-color: gray;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 20px auto;
+  max-width: 600px;
+  text-align: left;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.block-info p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+/* 🔹 Untertitel */
+.block-subtitle {
+  font-size: 20px;
+  font-weight: bold;
+  margin-top: 20px;
+  color: #007bff;
+}
+
+/* 🔹 Tabelle für die Transaktionen */
+.block-table {
+  width: 100%;
+  border-collapse: collapse;
+  margin-top: 20px;
+}
+
+.block-table th {
+  padding: 10px;
+  background-color: #222;
+  color: #fff;
+  text-align: left;
+}
+
+.block-table td {
+  padding: 8px;
+  border-bottom: 1px solid #ddd;
+}
+
+/* 🔹 Links für die Transaktionen */
+.block-link {
+  text-decoration: none;
+  color: #007bff;
+}
+
+.block-link:hover {
+  text-decoration: underline;
+}
+
+/* 🔹 Fehlermeldung */
+.block-error {
+  color: red;
+  font-size: 16px;
+  font-weight: bold;
+}

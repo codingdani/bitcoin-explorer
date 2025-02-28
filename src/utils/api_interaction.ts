@@ -45,28 +45,15 @@ export const getMemPoolData = async () => {
   }
 };
 
-//Funktion um Block-Hash abzurufen
-export const getBlockDataByHash = async (_blockHash: string) => {
+//Funktion um Block-Hash oder Block-Height abzurufen
+export const getBlockData = async (_blockHashOrHeight: string) => {
   try {
     const response = await axios.get(
-      `${BASE_API_URL}/blocks/${_blockHash}${TOKEN_EXTENSION}`
+      `${BASE_API_URL}/blocks/${_blockHashOrHeight}${TOKEN_EXTENSION}`
     );
     return response.data;
   } catch (error) {
     console.error("Fehler beim Aufrufen von Block Daten", error);
-    return null;
-  }
-};
-
-//Funktion um Block-Nummer abzurufen
-export const getBlockDataByBlockHeight = async (_blockHeight: string) => {
-  try {
-    const response = await axios.get(
-      `${BASE_API_URL}/blocks/${_blockHeight}${TOKEN_EXTENSION}`
-    );
-    return response.data;
-  } catch (error) {
-    console.error("Fehler beim Aufrufen der Block Daten", error);
     return null;
   }
 };
@@ -80,6 +67,45 @@ export const getAddressDataByName = async (_walletName: string) => {
     return response.data;
   } catch (error) {
     console.error("Fehler beim Aufrufen der Wallet Daten", error);
+    return null;
+  }
+};
+
+/**
+ * Holt die Coinbase-Transaktion eines Blocks und gibt die Miner-Adresse zurück
+ * @param _blockHash Hash des Blocks
+ * @returns Miner-Adresse oder null
+ */
+export const getBlockMinerAddress = async (
+  _blockHash: string
+): Promise<string | null> => {
+  try {
+    const blockResponse = await axios.get(
+      `${BASE_API_URL}/blocks/${_blockHash}${TOKEN_EXTENSION}`
+    );
+    const blockData = blockResponse.data;
+
+    if (!blockData.txids || blockData.txids.length === 0) {
+      throw new Error("Keine Transaktionen im Block gefunden.");
+    }
+
+    const coinbaseTxId = blockData.txids[0]; // Coinbase-Transaktion
+
+    const txResponse = await axios.get(
+      `${BASE_API_URL}/txs/${coinbaseTxId}${TOKEN_EXTENSION}`
+    );
+    const txData = txResponse.data;
+
+    if (!txData.outputs || txData.outputs.length === 0) {
+      throw new Error("Keine Outputs in der Coinbase-Transaktion gefunden.");
+    }
+
+    const minerAddress = txData.outputs[0].addresses
+      ? txData.outputs[0].addresses[0]
+      : null;
+    return minerAddress;
+  } catch (error) {
+    console.error("Fehler beim Abrufen der Miner-Adresse:", error);
     return null;
   }
 };

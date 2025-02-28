@@ -36,8 +36,6 @@ export default function Home() {
         setOffset(transactionListLength);
         setLastUpdated(new Date());
         setAutoUpdate(true);
-      } else {
-        throw new Error("Ungültige API Antwort");
       }
     } catch (error) {
       console.log("API ERROR", error);
@@ -49,11 +47,9 @@ export default function Home() {
   useEffect(() => {
     if (!autoUpdate) return;
     fetchMempoolData();
-
     const interval = setInterval(() => {
       fetchMempoolData();
     }, 10000);
-
     return () => clearInterval(interval);
   }, [autoUpdate]);
 
@@ -65,6 +61,11 @@ export default function Home() {
     setAutoUpdate(false);
   };
 
+  const manualFetchMempoolData = () => {
+    setAutoUpdate(true);
+    fetchMempoolData();
+  };
+
   return (
     <div className="mempool-container">
       {lastUpdated && (
@@ -73,7 +74,10 @@ export default function Home() {
         </p>
       )}
 
-      <button onClick={fetchMempoolData} className="mempool-refresh-button">
+      <button
+        onClick={manualFetchMempoolData}
+        className="mempool-refresh-button"
+      >
         Manuell aktualisieren
       </button>
 
@@ -110,7 +114,7 @@ export default function Home() {
             </tbody>
           </table>
 
-          {offset < mempool.length && (
+          {offset <= mempool.length && (
             <button
               onClick={loadMoreTransactions}
               className="mempool-load-more-button"

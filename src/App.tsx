@@ -11,8 +11,7 @@ import React from "react";
 import {
   getAddressData,
   getTransactionData,
-  getBlockDataByHash,
-  getBlockDataByBlockHeight,
+  getBlockData,
 } from "./utils/api_interaction";
 import { SearchType } from "./utils/validateSearchQuery";
 import Searchbar from "./components/Searchbar";
@@ -59,7 +58,7 @@ function Layout() {
             setResult(data);
             navigate(`/tx/${_query}`);
           } else {
-            data = await getBlockDataByHash(_query);
+            data = await getBlockData(_query);
             if (data) {
               setResult(data);
               navigate(`/block/${_query}`);
@@ -68,7 +67,7 @@ function Layout() {
           break;
 
         case "blockHeight":
-          data = await getBlockDataByBlockHeight(_query);
+          data = await getBlockData(_query);
           if (data) {
             setResult(data);
             navigate(`/block/${_query}`);

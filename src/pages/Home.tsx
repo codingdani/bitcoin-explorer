@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { getMemPoolData } from "../utils/api_interaction";
-import "../styles/mempool.css"; // 🎨 CSS-Datei importieren
+import "../styles/mempool.css";
 
 interface Transaction {
   hash: string;

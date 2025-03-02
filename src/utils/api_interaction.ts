@@ -6,7 +6,7 @@ const VITE_BLOCKCYPHER_API_KEY = import.meta.env.VITE_BLOCKCYPHER_API_KEY;
 const TOKEN_EXTENSION = `?token=${VITE_BLOCKCYPHER_API_KEY}`;
 const BASE_API_URL = "https://api.blockcypher.com/v1/btc/main";
 
-//Funktion um Wallet-Adressen abzurufen
+//Funktion um Wallet-Informationen abzurufen
 /**
  * Holt die Informationen einer Wallet
  * @param _address of Bitcoin-Wallet
@@ -24,7 +24,7 @@ export const getAddressData = async (_address: string) => {
   }
 };
 
-//Funktion um Transaktion-Hash abzurufen
+//Funktion um Transaktion-Details abzurufen
 /**
  * Holt die Informationen einer Transaktion
  * @param _txID 64 stelliger Hash einer tx
@@ -61,7 +61,7 @@ export const getMemPoolData = async () => {
   }
 };
 
-//Funktion um Block-Hash oder Block-Height abzurufen
+//Funktion um Block-Informationen abzurufen
 /**
  * Holt die Informationen eines spezifischen Blocks
  * @param _blockHashOrHeight 64 stelliger Hash oder Height/Nummer des Blocks
@@ -79,9 +79,9 @@ export const getBlockData = async (_blockHashOrHeight: string) => {
   }
 };
 
-//Funktion um Wallet-Name abzurufen
+//Funktion um Wallet-Adressen abzurufen
 /**
- * Holt die Informationen einer Wallet Adresse
+ * Holt die Wallet Adressen zu einem spezifischen Namen
  * @param _walletName zugewisener Name zu einer oder mehrere Wallet adressen
  * @returns Wallet or HDWallet
  */

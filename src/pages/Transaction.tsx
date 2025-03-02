@@ -69,20 +69,23 @@ export default function TransactionPage({
               <strong>Virtuelle Größe:</strong> {transactionData.vsize} vBytes
             </p>
           </div>
+          {transactionData ? (
+            <>
+              <h2 className="transaction-subtitle">Sender</h2>
+              <ul className="transaction-list">
+                {transactionData.inputs.map((input, index) => (
+                  <li key={index}>{input.addresses?.[0] || "Unbekannt"}</li>
+                ))}
+              </ul>
 
-          <h2 className="transaction-subtitle">Sender</h2>
-          <ul className="transaction-list">
-            {transactionData.inputs.map((input, index) => (
-              <li key={index}>{input.addresses?.[0] || "Unbekannt"}</li>
-            ))}
-          </ul>
-
-          <h2 className="transaction-subtitle">Empfänger</h2>
-          <ul className="transaction-list">
-            {transactionData.outputs.map((output, index) => (
-              <li key={index}>{output.addresses?.[0] || "Unbekannt"}</li>
-            ))}
-          </ul>
+              <h2 className="transaction-subtitle">Empfänger</h2>
+              <ul className="transaction-list">
+                {transactionData.outputs.map((output, index) => (
+                  <li key={index}>{output.addresses?.[0] || "Unbekannt"}</li>
+                ))}
+              </ul>
+            </>
+          ) : null}
         </>
       )}
     </div>

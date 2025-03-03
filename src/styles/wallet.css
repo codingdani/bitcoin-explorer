@@ -1,0 +1,35 @@
+/* 🔹 Container für die gesamte Wallet-Seite */
+.wallet-container {
+  padding: 20px;
+  text-align: center;
+}
+
+/* 🔹 Titel der Seite */
+.wallet-title {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 🔹 Wallet-Details */
+.wallet-info {
+  background-color: gray;
+  padding: 15px;
+  border-radius: 8px;
+  margin: 20px auto;
+  max-width: 600px;
+  text-align: left;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}
+
+.wallet-info p {
+  margin: 5px 0;
+  font-size: 16px;
+}
+
+/* 🔹 Fehleranzeige */
+.wallet-error {
+  color: red;
+  font-size: 16px;
+  font-weight: bold;
+}

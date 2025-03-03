@@ -1,0 +1,30 @@
+/* 🔹 Container für das Bitcoin-Chart */
+.bitcoin-chart-container {
+  padding: 20px;
+  text-align: center;
+}
+
+/* 🔹 Überschrift */
+.bitcoin-chart-container h2 {
+  font-size: 24px;
+  font-weight: bold;
+  color: #333;
+}
+
+/* 🔹 Aktueller Preis */
+.bitcoin-price {
+  font-size: 18px;
+  font-weight: bold;
+  color: #ff9900;
+  margin-bottom: 10px;
+}
+
+/* 🔹 Chart-Wrapper */
+.chart-wrapper {
+  max-width: 600px;
+  margin: 0 auto;
+  background-color: #fff;
+  padding: 15px;
+  border-radius: 8px;
+  box-shadow: 0 4px 6px rgba(0, 0, 0, 0.1);
+}

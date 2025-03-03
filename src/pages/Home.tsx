@@ -1,6 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { getMemPoolData } from "../utils/api_interaction";
 import "../styles/mempool.css";
+import BitcoinChart from "../components/BitcoinChart";
 
 interface Transaction {
   hash: string;
@@ -67,65 +68,68 @@ export default function Home() {
   };
 
   return (
-    <div className="mempool-container">
-      {lastUpdated && (
-        <p className="mempool-update-time">
-          Zuletzt aktualisiert: {lastUpdated.toLocaleTimeString()}
-        </p>
-      )}
+    <>
+      <BitcoinChart />
+      <div className="mempool-container">
+        {lastUpdated && (
+          <p className="mempool-update-time">
+            Zuletzt aktualisiert: {lastUpdated.toLocaleTimeString()}
+          </p>
+        )}
 
-      <button
-        onClick={manualFetchMempoolData}
-        className="mempool-refresh-button"
-      >
-        Manuell aktualisieren
-      </button>
+        <button
+          onClick={manualFetchMempoolData}
+          className="mempool-refresh-button"
+        >
+          Manuell aktualisieren
+        </button>
 
-      {loading && (
-        <p className="mempool-loading">Lade unbestätigte Transaktionen...</p>
-      )}
+        {loading && (
+          <p className="mempool-loading">Lade unbestätigte Transaktionen...</p>
+        )}
 
-      {shownTransactions.length > 0 ? (
-        <>
-          <table className="mempool-table">
-            <thead>
-              <tr>
-                <th>TX Hash</th>
-                <th>Gesamtbetrag</th>
-                <th>Gebühren</th>
-                <th>Größe</th>
-                <th>Zeit</th>
-              </tr>
-            </thead>
-            <tbody>
-              {shownTransactions.map((tx) => (
-                <tr key={tx.hash}>
-                  <td>
-                    <a href={`/tx/${tx.hash}`} className="mempool-link">
-                      {tx.hash.slice(0, 15)}...
-                    </a>
-                  </td>
-                  <td>{(tx.total / 100000000).toFixed(8)} BTC</td>
-                  <td>{(tx.fees / 100000000).toFixed(8)} BTC</td>
-                  <td>{tx.size} Bytes</td>
-                  <td>{new Date(tx.received).toLocaleTimeString()}</td>
+        {shownTransactions.length > 0 ? (
+          <>
+            <table className="mempool-table">
+              <thead>
+                <tr>
+                  <th>TX Hash</th>
+                  <th>Gesamtbetrag</th>
+                  <th>Gebühren</th>
+                  <th>Größe</th>
+                  <th>Zeit</th>
                 </tr>
-              ))}
-            </tbody>
-          </table>
+              </thead>
+              <tbody>
+                {shownTransactions.map((tx) => (
+                  <tr key={tx.hash}>
+                    <td>
+                      <a href={`/tx/${tx.hash}`} className="mempool-link">
+                        {tx.hash.slice(0, 15)}...
+                      </a>
+                    </td>
+                    <td>{(tx.total / 100000000).toFixed(8)} BTC</td>
+                    <td>{(tx.fees / 100000000).toFixed(8)} BTC</td>
+                    <td>{tx.size} Bytes</td>
+                    <td>{new Date(tx.received).toLocaleTimeString()}</td>
+                  </tr>
+                ))}
+              </tbody>
+            </table>
 
-          {offset <= mempool.length && (
-            <button
-              onClick={loadMoreTransactions}
-              className="mempool-load-more-button"
-            >
-              Mehr laden
-            </button>
-          )}
-        </>
-      ) : (
-        !loading && <p>Keine unbestätigten Transaktionen gefunden.</p>
-      )}
-    </div>
+            {offset <= mempool.length && (
+              <button
+                onClick={loadMoreTransactions}
+                className="mempool-load-more-button"
+              >
+                Mehr laden
+              </button>
+            )}
+          </>
+        ) : (
+          !loading && <p>Keine unbestätigten Transaktionen gefunden.</p>
+        )}
+      </div>
+    </>
   );
 }

@@ -5,6 +5,46 @@ import axios from "axios";
 const VITE_BLOCKCYPHER_API_KEY = import.meta.env.VITE_BLOCKCYPHER_API_KEY;
 const TOKEN_EXTENSION = `?token=${VITE_BLOCKCYPHER_API_KEY}`;
 const BASE_API_URL = "https://api.blockcypher.com/v1/btc/main";
+const COINGECKO_API_URL = "https://api.coingecko.com/api/v3";
+
+/**
+ * Holt den aktuellen Bitcoin-Preis.
+ * @returns Preis in USD oder null bei Fehler.
+ */
+export const getBitcoinPrice = async (): Promise<number | null> => {
+  try {
+    const response = await axios.get(
+      `${COINGECKO_API_URL}/simple/price?ids=bitcoin&vs_currencies=usd`
+    );
+    return response.data.bitcoin.usd;
+  } catch (error) {
+    console.error("❌ Fehler beim Abrufen des Bitcoin-Preises:", error);
+    return null;
+  }
+};
+
+/**
+ * Holt historische Bitcoin-Preise der letzten X Tage.
+ * @param _days Anzahl der Tage (max. 90 bei CoinGecko kostenlos)
+ * @returns Array mit Zeitstempeln & Preisen oder null
+ */
+export const getHistoricalBitcoinPrices = async (
+  _days: number = 7
+): Promise<{ time: string; price: number }[] | null> => {
+  try {
+    const response = await axios.get(
+      `${COINGECKO_API_URL}/coins/bitcoin/market_chart?vs_currency=usd&days=${_days}`
+    );
+    const prices = response.data.prices.map((entry: [number, number]) => ({
+      time: new Date(entry[0]).toLocaleDateString(), // 🏗️ Datum formatieren
+      price: entry[1],
+    }));
+    return prices;
+  } catch (error) {
+    console.error("Fehler beim Abrufen der historischen Bitcoin-Daten:", error);
+    return null;
+  }
+};
 
 //Funktion um Wallet-Informationen abzurufen
 /**

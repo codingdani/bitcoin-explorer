@@ -90,6 +90,7 @@ export default function Home() {
 
         {shownTransactions.length > 0 ? (
           <>
+            <h2>Mempool</h2>
             <table className="mempool-table">
               <thead>
                 <tr>

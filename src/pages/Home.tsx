@@ -81,12 +81,10 @@ export default function Home() {
           onClick={manualFetchMempoolData}
           className="mempool-refresh-button"
         >
-          Manuell aktualisieren
+          aktualisieren
         </button>
 
-        {loading && (
-          <p className="mempool-loading">Lade unbestätigte Transaktionen...</p>
-        )}
+        {loading && <p className="mempool-loading">Lade Mempool...</p>}
 
         {shownTransactions.length > 0 ? (
           <>
@@ -128,7 +126,7 @@ export default function Home() {
             )}
           </>
         ) : (
-          !loading && <p>Keine unbestätigten Transaktionen gefunden.</p>
+          !loading && <p>Keine Transaktionen gefunden.</p>
         )}
       </div>
     </>

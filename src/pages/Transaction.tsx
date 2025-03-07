@@ -55,7 +55,7 @@ export default function TransactionPage({
               {transactionData.block_height}
             </p>
             <p>
-              <strong>Gesamtbetrag:</strong>{" "}
+              <strong>Betrag:</strong>{" "}
               {(transactionData.total / 100000000).toFixed(8)} BTC
             </p>
             <p>
